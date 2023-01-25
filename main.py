@@ -2399,6 +2399,8 @@
 # print(text)
 # hello_world("world!")
 # hello_world2("Hi!")
+#
+# a = 5
+# print(a)
 
-a = 5
-print(a)
+print("Вносим изменения в новый репозиторий")
