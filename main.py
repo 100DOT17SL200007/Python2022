@@ -39,6 +39,7 @@
 # s3 = s1 + " " + s2 + "!\t\t"
 # print(s3)
 # print(s3 * 5)
+import sqlite3
 
 #
 # print(56576575675656346565465)
@@ -2208,7 +2209,7 @@
 # res = list(filter(lambda a: 10 < a <= 20, z ))
 # print(res)
 
-#23.02.23
+#23.01.23
 # filter(func, iterable)
 # t = ('abcd', 'abc', 'adefg', 'def', 'ghi')
 # t2 = tuple(filter(lambda s: len(s) == 3, t))
@@ -2403,4 +2404,1093 @@
 # a = 5
 # print(a)
 
-print("Вносим изменения в новый репозиторий")
+# print("Вносим изменения в новый репозиторий")
+
+#01.02.2023
+
+#ФАЙЛЫ
+
+# f = open('text.txt') #mode = 'r'
+# print(*f)
+#
+# i = 0
+# f = open('text.txt')
+# for a in f:
+#     i += 1
+# f.close()
+# print(i)
+
+# file_name = 'res.txt'
+# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.77]
+# print(list(map(str,lst)))
+#
+# with open(file_name, 'w+') as my_file:
+
+
+#13.03.23
+
+# class Computer:
+#     def __init__(self):
+#         self.name = "PC001"
+#         self.os = self.OS()
+#         self.cpu = self.CPU()
+# class OS:
+#     def system(self):
+#         return "Windows 10"
+#
+#     class CPU:
+#         def make(self):
+#             return "Intel"
+#
+#         def model(self):
+#             return "Core-i7"
+#
+# comp = Computer()
+# print(comp.name)
+# me_os = comp.os
+# my_cpu = comp.cpu
+# print(my_os.system())
+# print(my_cpu.make())
+# print(my_cpu.model())
+
+
+# class Base:
+#     def __init__(self):
+#         self.db = self.Inner()
+#
+#     def display(self):
+#         print("In Base Class")
+#
+#         class Inner:
+#             def display1(self):
+#                 print("Inner Of Base Class")
+#
+# class SubClass(Base):
+#     def __init__(self):
+#         print("In SubClass")
+#         super().__init__()
+#
+#      class Inner(Base.Inner):
+#         def display2(self):
+#           print("Inner Of SubClass")
+#
+# a = SubClass()
+# a.display()
+# b = a.db
+# b.display1()
+# b.display2()
+
+#Множественное наследование
+
+# class Creature:
+#     def __init__(self, name):
+#         self.name = name
+#
+# class Animal(Creature):
+#     def sleep(self):
+#         print(self.name, + "is sleeping")
+#
+# class Pet(Creature):
+#     def play(self):
+#         print(self.name + "is playing")
+#
+# class Dog(Animal, Pet):
+#     def bark(self):
+#         print(self.name + "is barking")
+#
+# beast = Dog("Buddy")
+# beast.bark()
+# beast.sleep()
+# beast.play()
+
+
+# class AA:
+#     def __init__(self):
+#         print("Инициализатор AA")
+# class A:
+#     def __init__(self):
+#         print("Инициализатор A")
+#
+# class B(A):
+#     def __init__(self):
+#         print("Инициализатор B")
+#
+# class C(AA):
+#     def __init__(self):
+#         print("Инициализатор C")
+#
+# class D(B,C):
+#     def __init__(self):
+#         B.__init__(self)
+#         C.__init__(self)
+#         print("Инициализатор D")
+#
+# d =D()
+# print(D.mro())
+# print(D.__mro__)
+
+# class Point:
+#     def __init__(self, x,y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __str__(self):
+#         return f"({self.__x}, {self.__y})"
+#
+# class Style:
+#     def __init__(self, color="red", width=1):
+#         print("Инициализатор Style")
+#         self._color = color
+#         self._width = width
+#
+#
+# class Pos:
+#     def __init__(self, sp:Point, ep:Point):
+#         print("Инициализатор Pos")
+#         self._sp = sp
+#         self._ep = ep
+#         super().__init__(color,width)
+#
+# class Line(Pos,Style):
+#     def __init__(self, sp:Point, ep:Point, color, width):
+#         Pos.__init__(self, sp,ep)
+#         Style.__init__(self,color,width)
+
+# Миксины (примеси)
+
+#class Displayer:
+#   @staticmethod
+#    def display(message):
+ #      print(message)
+
+
+#class LoggerMixin:
+ #   def log(self, message, filename="logfile.txt"):
+  #      with open(filename, 'a') as fh:
+ #           fh.write(message)
+
+ #   def display(self,message):
+#       Displayer.display(message)
+ #       self.log(message)
+
+#class MySubClass(LoggerMixin, Displayer):
+ #   def log(self,message,filename=""):
+ #       supper().log(message, filename="log.txt")
+
+#sub = MySubClass()
+#sub.display("Это строка будет напечатана и сохранена в файл")
+
+
+# class Goods:
+#     def __init__(self,name,weight,price):
+#         print("Init Goods")
+#         self.name = name
+#         self.weight = weight
+#         self.price = price
+#
+#     def print_info(self):
+#         print(f"{self.name},{self.weight},{self.price}")
+#
+# class MixinLog:
+#     ID = 0
+#
+#     def __init__(self):
+#         print("Init MixinLog")
+#         Mixin.ID += 1
+#         self.id = Mixinlog.ID
+#
+#     def save_log(self):
+#         print(f"{self.id}: товар был продан в 00:00 часов")
+#
+# class NoteBook(Goods, MixinLog):
+#     pass
+#
+# n = NoteBook("HP", 1.5, 35000)
+# n.print_info()
+# n.save_log()
+#
+#
+# n = NoteBook("HP", 1.5, 35000)
+# n.save_log()
+
+# Перегрузка операторов
+
+# Число секунд в одном дне: 24 * 60 * 60 = 86400
+
+# class Clock:
+#     DAY = 86400
+#
+#     def __init__(self,sec):
+#         if not isinstance(sec, int):
+#             raise ValueError("Секунды должны быть целым числом")
+#         self.sec = sec % self.DAY
+#
+#     def get_format_time(self):
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec / 3600) % 24
+#         return f"{Clock.get_form(h)}:{Clock.get_form(m)}:{Clock.get_form(s)}"
+#
+#     @staticmethod
+#     def get_form(x):
+#         return x if x > 9 else "0" + str(x)
+#
+#     def __add_(self,other):
+#         if not isinstance(other,Clock):
+#             raise ArithmeticError("Правый операнд должен быть типом данным Clock")
+#         return Clock(self.sec + other.sec)
+#
+#        def __eq__(self,other):
+#           if self.sec == other.sec:
+#               return  True
+#           return False
+#     def __getitem__(self, item):
+#         if not isinstance(item, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if item == "hour":
+#             return (self.sec // 3600) % 24
+#         elif item == "min":
+#             return (self.sec // 60) % 60
+#         elif item == "sec":
+#             return self.sec % 60
+#
+#         return "Неверный ключ"
+#     def __setitem__(self, key, value):
+#         if not isinstance(key, str):
+#             raise ValueError("Ключ должен быть строкой")
+#         if not isinstance(value, int):
+#             raise ValueError("Значение должно быть целым числом")
+#         s = self.sec % 60
+#         m = (self.sec // 60) % 60
+#         h = (self.sec / 3600) % 24
+#
+#        if key == "hour":
+#            set.sec = s + 60 * m + value * 3600
+#        elif key == "min":
+#            self.sec = s + 60 * value + h * 3600
+#        elif key == "sec":
+#            self.sec = value + 60 * m + h * 3600
+#
+# c1 = Clock(8000)
+# print(c1.get_format_time())
+# print(c1["hour"],c1["min"],c1["sec"])
+# c1["hour"] = 9
+# c1["min"] = 20
+# c1["sec"] = 30
+# print(c1["hour"],c1["min"],c1["sec"])
+# print(c1.get_format_time())
+
+#c1 = Clock(100)
+#c2 = Clock(200)
+#c4 = Clock(300)
+# if c1 == c2:
+#     print("Время равно")
+# else:
+#     print("Время разное")
+# c3 = c1 + c2 + c4  #c3 = Clock(100+200)  #c3 = Clock(300) + c4
+# print(c1.get_format_time())
+# print(c2.get_format_time())
+# print(c3.get_format_time())
+# print(c4.get_format_time())
+# # c2 += c1
+# print(c2.get_format_time())
+
+
+#class Student:
+ #  def __init__(self, name, marks):
+ #      self.name = name
+ #      self.marks = list(marks)
+
+ #  def __getitem__(self, item):
+  #     if 0 <= item < len(self.marks):
+  #         return self.marks[item]
+   #    else:
+   #        raise IndexError("Неверный индекс")
+            # print("Неверный индекс")
+
+  #  def __setitem__(self, key, value):
+  #      if not isinstance(key, int) or key < 0:
+  #          raise TypeError("Индекс должен быть положительным числом")
+
+   #  if key >= len(self.marks):
+   #      off = key + 1 - len(self.marks)
+    #     self.marks.extend([None] * off)
+
+  #   self.marks[key] = value
+
+  #  def __delitem__(self,key):
+  #      if not isinstance(key, int):
+   #         raise TypeError("Индекс должен быть целым числом")
+   #     del self.marks[key]
+
+
+#s1 = Student("Сергей", [5,5,3,4,5])
+#print(s1[2])
+#s1[2] = 4
+#print(s1.marks)
+# print(s1.marks[2])
+# print([None] *6)
+
+
+# class Cat:
+#     def __init__(self, name):
+#         self.name = name
+#     def __repr__(self):
+#         return f"{self.__class__}: {self.name}"
+#
+#     def __str__(self):
+#         return f"{self.name}"
+#
+# cat = Cat("Пушок")
+# print(cat)
+
+# class Point:
+#     def __init__(self, *args):
+#         self.coord = args
+#
+#     def __len__(self):
+#         return len(self.coord)
+#
+#
+# p = Point(5,7,3)
+# print(len(p))
+
+#
+# from random import choice, randint
+# class Cat:
+#     def __init__(self, name, age, pol):
+#         self.name = name
+#         self.age = age
+#         self.pol = pol
+#
+#     def __str__(self):
+#         if self.pol == "M":
+#             return f"{self.name} is good boy!!!"
+#         if self.pol == "F":
+#             return f"{self.name} is good girl!!!"
+#         else:
+#             return f"{self.name} is good Kitty!!!"
+#     def __repr__(self):
+#         return f"Cat(name='{self.name}', age='{self.age}', pol'={self.pol}'"
+#     def __add__(self, other):
+#         if self.pol != other.pol:
+#             return [Cat("No name", 0, choice(["M","F"])) for _ in range(randint(1, 5))]
+#         else:
+#             raise TypeError("Types are not supported!")
+#
+# cat1 = Cat("Tom", 4, "M")
+# cat2 = Cat("Else", 5, "F")
+# print(cat1)
+# print(cat2)
+# print(cat1 + cat2)
+
+# Полиморфизм
+# class Rectangle:
+#     def __init__(self,w,h):
+#         self.w = w
+#         self.h = h
+#
+#     def get_per_rect(self):
+#         return 2* (self.w + self.h)
+#
+# class Square:
+#     def __init__(self,a):
+#         self.a = a
+#
+#     def get_per_sq(self):
+#         return 4 * self.a
+#
+# class Triangle:
+#     def __init__(self,a,b,c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#
+# r1 = Rectangle(1,2)
+# r1 = Rectangle(3,4)
+# s1 = Square(10)
+# s2 = Square(20)
+#
+# shape = [r1,r2,s1,s2]
+#
+# for g in shape:
+#     print(g.get_perimetr())
+#
+#     if isinstance(g, Rectangle):
+#         print(g.het_per_rect())
+#     else:
+#         print(g.get_per_sq())
+# print(r1.get_per_rect(), r2.get_per_rect())
+# print(s1.get_per_sq(), s2.get_per_sq())
+
+# class Number:
+#     def __init__(self, value):
+#         self.value = value
+#     def total(self,a):
+#         return self.value + a
+#
+# class Text:
+#     def __init__(self, value):
+#         self.value = value
+#
+#     def total(self,a):
+#         return len(self.value + str(a))
+#
+# t1 = Number(10)
+# t2 = Text("Python")
+#
+# print(t1.total(35))
+# print(t2.total(35))
+
+# class Cat:
+#      def __init__(self, name, age):
+#          self.name = name
+#          self.age = age
+#      def info(self):
+#              return f"Я кот. Меня зовут {self.name}, Мой возраст {self.age}."
+#       def make_sound(self):
+#             return f"{self.name} мяукает."
+# class Dog:
+#      def __init__(self, name, age):
+#          self.name = name
+#          self.age = age
+#      def info(self):
+#            return f"Я собака. Меня зовут {self.name}, Мой возраст {self.age}."
+#      def make_sound(self):
+#           return f"{self.name} гавкает."
+# cat = Cat("Пушок", 2.5)
+# dog = Dog("Мухтар", 4)
+# for i in [cat, dog]:
+# print(i.info())
+# print(i.make_sound())
+
+
+# class Human:
+#     def __init__(self,last_name, first_name, age):
+#         self.last_name = last_name
+#         self.first_name = first_name
+#         self.age = age
+#
+#     def info(self):
+#         print(f'{self.last_name}{self.first_name}{self.age}', end=" ")
+#
+# class Student(Human):
+#     def __init__(self, last_name, first_name, age, speciality, group, rating):
+#        super().__init__(last_name, first_name, age)
+#        self.speciality = speciality
+#        self.group = group
+#        self.rating = rating
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.speciality}{self.group}{self.rating}", end=" ")
+#
+# class Teacher(Human):
+#     def __init__(self,last_name, first_name, age, speciality, experience):
+#         super().__init__(last_name, first_name, age)
+#         self.speciality = speciality
+#         self.experience = experience
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.speciality}{self.experience}", end=" ")
+#
+# class Graduate(Student):
+#     def __init__(self,last_name, first_name, age, speciality, group, rating,topic):
+#         super().__init__(last_name, first_name, age, speciality, group, rating)
+#         self.topic = topic
+#
+#     def info(self):
+#         super().info()
+#         print(f"{self.topic}", end=" ")
+#
+#
+#
+# group = [
+#     Student("Батодалаев", "Даши", 16, "ГК", "Web_011", 5),
+#     Student("Загидуллин", "Линар", 32, "РПО", "PD_011", 5),
+#     Graduate("Шугани", "Сергей", 15, "РПО", "PD_011", 5, "Защита персональных данных"),
+#     Teacher("Даньшин", "Андрей", 38, "Астрофизика", 110),
+#     Student("Маркин", "Даниил", 17, "ГК", "Python_011", 5),
+#     Teacher("Башкиров", "Алексей", 45, "Разработка приложений", 20)]
+# for i in group:
+#     i.info()
+#     print(i.first_name)
+
+
+# class Rectangle:
+#     def __init__(self, w, h):
+#         self.w = w
+#         self.h = h
+#     def get_perimetr(self):
+#             return 2 * (self.w + self.h)
+# class Square:
+#     def __init__(self, a):
+#         self.a = a
+#     def get_perimetr(self):
+#         return 4 * self.a
+# class Triangle:
+#     def __init__(self, a, b, c):
+#         self.a = a
+#         self.b = b
+#         self.c = c
+#     def get_perimetr(self):
+#         return self.a + self.b + self.c
+#         r1 = Rectangle(1, 2)
+#         r2 = Rectangle(3, 4)
+#         s1 = Square(10)
+#         s2 = Square(20)
+#         t1 = Triangle(1, 2, 3)
+#         t2 = Triangle(4, 5, 6)
+#         shape = [r1, r2, s1, s2, t1, t2]
+#         for g in shape:
+# print(g.get_perimetr())
+
+
+#pip install requests
+
+# import requests
+
+
+
+# from bs4 import BeautifulSoup
+
+
+# f = open ('index.html').read()
+# soup = BeautifulSoup(f,"html.parser")
+# row = soup.find("div", class_="name")
+#row = soup.find_all("div", class_="row")[1].find(class_="name").text
+# row = soup.find_all("div", {"data-set":"salary"})
+# row = soup.find("div", string="Alena").parent
+# row = soup.find("div", id="whois").find_next_sibling()
+# row = soup.find("div", id="whois3").find_previous_sibling()
+# print(row)
+
+
+# def get_copywriter(tag):
+#     whois = tag.find("div", class_="whois")
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+# f = open ('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f,"html.parser")
+# copywriter = []
+# row = soup.find_all("div", class_="row")
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+# print(copywriter)
+
+
+# import re
+# def get_salary(s):
+#     pattern = r""
+#     res = re.findall(patterns)
+#     print(res)
+#
+# f = open ('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f,"html.parser")
+# row = soup.find_all("div", {"data-set": "salary"})
+# for i in row:
+#     get_salary(i.text)
+
+# import requests
+#
+# res = requests.get("https://ru.wordpress.org/")
+# print(res.headers)
+
+#
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+# def get_html(url):
+#     res = requests.get(url)
+#     return res.text
+#
+#
+# def refined(s):
+#     return re.sub(r"\D+", "", s)
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section", class_="plugin-section")[1]
+#     plugins = p1.find_all("article")
+#     for plugin in plugins:
+#         name = plugin.find("h3").text
+#         # url = plugin.find("h3").find("a").get("href")
+#         url = plugin.find("h3").find("a")["href"]
+#         rating = plugin.find('span', class_="rating-count")
+#     print(rating)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/"
+#     get_data(get_html(url))
+#
+# if __name__=="__main__":
+#     main()
+
+
+
+
+#12.04.23
+
+# import sqlite3
+#
+# # con = sqlite3.connect("profile.db")
+# # cur = con.cursor()
+# #
+# # con.close()
+#
+# with sqlite3.connect('profile.db') as con:
+#     cur = con.cursor()
+#     # cur.execute("""CREATE TABLE  IF NOT EXISTS users(
+#     # id INTEGER PRIMARY KEY AUTOINCREMENT,
+#     # name TEXT NOT NULL,
+#     # summa REAL,
+#     # date TEXT
+#     # )""")
+#
+#     cur.execute("DROP TABLE users")
+
+
+# 24.04.23
+
+# import sqlite3
+#
+# cars = [
+#     ('BMW', 54000),
+#     ('Chevrolet', 46000),
+#     ('Daewoo', 38000),
+#     ('Citroen', 34000),
+#     ('Honda', 29000),
+# ]
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE  IF NOT EXISTS cars(
+#        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#        model TEXT,
+#        price INTEGER
+#    )
+#    """)
+    # cur.executescript("""
+    # DELETE FROM cars WHERE model LIKE 'B%';
+    # UPDATE cars SET price = price + 100;
+    # """)
+    # cur.execute("UPDATE cars SET price = :Price WHERE model LIKE 'B%'", {'Price': 0})
+
+    # cur.executemany("INSERT INTO cars VALUES(NULL, ?,?)", cars)
+    # for car in cars:
+    #     cur.execute("INSERT INTO cars VALUES(NULL, ?,?)", car)
+
+    # cur.execute("INSERT INTO cars VALUES(1, 'Renault', 22000)")
+    # cur.execute("INSERT INTO cars VALUES(1, 'Volvo', 55000)")
+    # cur.execute("INSERT INTO cars VALUES(1, 'Mercedes', 65000)")
+    # cur.execute("INSERT INTO cars VALUES(1, 'Bentley', 35000)")
+    # cur.execute("INSERT INTO cars VALUES(1, 'Audi', 52000)")
+
+# con.commit()
+# con.close()
+
+# con = None
+# try:
+#     con = sqlite3.connect("cars.db")
+#     cur = con.cursor()
+#     cur.executescript("""
+#         CREATE TABLE  IF NOT EXISTS cars(
+#            car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#            model TEXT,
+#            price INTEGER
+#        );
+#        BEGIN;
+#        INSERT INTO cars VALUES(NULL, 'Renault', 22000);
+#         UPDATE cars2 SET price = price + 100;
+#         """)
+#     con.commit()
+# except sqlite3.Error as e:
+#     if con:
+#         con.rollback()
+#     print("Ошибка выполнения запроса",e)
+# finally:
+#     if con:
+#         con.close
+#26.04.23
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE  IF NOT EXISTS cars(
+#        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#        model TEXT,
+#        price INTEGER
+#    );
+#    CREATE TABLE IF NOT EXISTS cost(
+#    name TEXT, tr_in INTEGER, buy INTEGER
+#    );
+#    """)
+
+    # cur.execute("INSERT INTO cars VALUES(NULL, 'Запорожец', 1000)")
+    # last_row_id = cur.lastrowid
+    # buy_car_id = 2
+    # cur.execute("INSERT INTO cost VALUES('Илья',?,?)", (last_row_id, buy_car_id))
+    # cur.execute("SELECT model, price FROM cars")
+    #
+    # # for res in cur:
+    # #     print(res)
+    #
+    # # rows = cur.fetchall()
+    # # print(rows)
+    #
+    # rows = cur.fetchone()
+    # print(rows)
+    #
+    # rows2 = cur.fetchmany(5)
+    # print(rows2)
+
+# def read_ava(n):
+#     try:
+#        with open(f"avatars/{n}.png", 'rb') as f:
+#         return f.read()
+#     except IOError as e:
+#         print(e)
+#         return False
+#
+# def wirte_ava(name, data):
+#     try:
+#         with open(name, 'wb') as f:
+#             f.write(data)
+#     except IOError as e:
+#         print(e)
+#         return  False
+#     return True
+#
+# with sqlite3.connect('cars.db') as con:
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#     name TEXT,
+#     ava BLOB,
+#     score INTEGER
+#     );
+#     """)
+
+    # img = read_ava(1)
+    # if img:
+    #       binary = sqlite3.Binary(img)
+    #       cur.execute("INSERT INTO users VALUES('Илья', ?, 1000)", (binary,))
+
+    # cur.execute("SELECT ava FROM users")
+    # img = cur.fetchone()['ava']
+    #
+    # write_ava('out.png', img)
+
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#     with open('sql_dump.sql', "w") as f:
+#         for sql in con.iterdump():
+#             print(sql)
+
+# with sqlite3.connect('automobile.db') as con:
+#      cur = con.cursor()
+#
+#      with open('sql_dump.sql', "r") as f:
+#             sql = f.read()
+#             cur.executescript(sql)
+
+#
+# from sqlalchemy import create_engine
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import sessionmaker
+#
+# DATABASE_NAME = 'students.db'
+#
+# engine = create_engine(f"sqlite:///{DATABASE_NAME}")
+# Session = sessionmaker(bind=engine)
+# Base = declarative_base()
+#
+#
+# def create_db():
+#      Base.metadata.create_all(engine)
+
+
+# import os
+# from sqlalchemy import and_, or_, not_,desc
+# from models.database import DATABASE_NAME, Session
+# import create_database as db_creator
+
+
+# if __name__ =='__main__':
+#      db_is_created = os.path.exists(DATABASE_NAME)
+#      if not db_is_created:
+#           db_created.create.db()
+#
+#      session = Session()
+#
+
+#10.05.23
+#      print(session.query(Lesson).all())
+#      print("*" * 60)
+#
+#      for it in session.query(Lesson):
+#           print(it.lesson_title)
+#
+#           print(session.query(Lesson).count())
+#           print("*" * 60)
+#
+#      for it in session.query(Lesson).filter(not_(Lesson.id >= 3), not_(Lesson.lesson_title.like('M%'))):
+#           print(it)
+#      print("*" * 60)
+#
+#      for it, gr in session.query(Lesson.lesson_title, Group.group_name).\
+#              filter(and_(association_table.c.lesson_id == Lesson_id,
+#                          association_table.c.group_id == Group_id,
+#                          Group.group_name == 'MDA-7')):
+#           print(it, gr)
+#      print(session.query(Lesson).filter(Lesson.lesson_title is not None).all())
+#       print(session.query(Lesson).filter(Lesson.lesson_title.in_(['Математика', 'Линейная алгебра'])).all())
+#       print(session.query(Student).filter(Student.age.between(16,17)).all())
+#       print(session.query(Student).filter(not_(Student.age.between(16,17))).all())
+#        print(session.query(Student).filter(not_(Student.age.like("1%"))).limit(4))
+
+       # for it in session.query(Student).filter(not_(Student.age.like("1%"))).limit(4).offers(3):
+       #       print((it)
+    # for it in session.query(Student).order_by(desc(Student.surname)):
+    #     print((it)
+
+    # for it in session.query(Student).join(Group).filter(Group.group_name == 'MDA-7'):
+    #     print(it)
+
+    # for it in session.query(distinct(Student.age)):
+    #     print(it)
+    # for it in session.query(Student.age).filter(Student.age < 20).distinct():
+    #      print(it)
+# for it in session.query(Lesson):
+#     print(it.lesson_title)
+# print("*" * 60)
+#
+# i = session.query(Lesson).first()
+# i.lessin_title = "Информатика"
+# session.add(i)
+# session.commit()
+
+    # for it in session.query(Lesson):
+    #    print(it.lesson_titile)
+    # print("*" * 60)
+    #
+    # session.query(Lesson).filter(Lesson.lesson_title.like("%M%")
+    #                              ).update({'lesson_title': 'M'}, synchronize_session='fetch')
+    # session.commit()
+#    for it in session.query(Lesson):
+#     print(it.lesson_titile)
+#   print("*" * 60)
+
+#    session.add(Lesson(lesson_title="Математика"))
+#     session.commit()
+
+    # for it in session.query(Lesson):
+    #    print(it.lesson_titile)
+    # print("*" * 60)
+    #
+    # i = session.query(Lesson).filter(Lesson(lesson_title == "Физика").one()
+    # session.delete(i)
+    # session.commit()
+    #
+    # for it in session.query(Lesson):
+    #    print(it.lesson_titile)
+    # print("*" * 60)
+
+#Шаблонизатор  Jinja
+#pip install jinja2
+
+from jinja2 import Template
+
+#per = Perso("Игорь", 28)
+# name = "Игорь"
+# age = 28
+# per = {'name': "Игорь", 'age':28}
+# tm = Template("Меня зовут {{ p.name }}. Мне {{p.age}} лет.")
+# #tm = Template("Меня зовут {{ p.get_name() }}. Мне {{ p.get_age()}} лет.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+# class Person:
+#     def __init__(self,name,age):
+#         self.name = name
+#         self.age = age
+#
+#     def get_name(self):
+#         return self.name
+#     def get_age(self):
+#         return self.age
+#
+# per = Perso("Игорь", 28)
+# # name = "Игорь"
+# # age = 28
+#
+# #tm = Template("Меня зовут {{ p.name }}. Мне {{ p.name}} лет.")
+# tm = Template("Меня зовут {{ p.get_name() }}. Мне {{ p.get_age()}} лет.")
+# msg = tm.render(p=per)
+#
+# print(msg)
+
+# cities = [
+#     {'id': 1, 'city': 'Москва'},
+#     {'id': 2, 'city': 'Смоленск'},
+#     {'id': 3, 'city': 'Сочи'},
+#     {'id': 4, 'city': 'Минск'},
+#     {'id': 5, 'city': 'Ярославль'}
+# ]
+# link = """<select>
+# {% for c in cities -%}
+# {% if c.id > 3 -%}
+#     <option value="{{c['id']}}>{{c['city']}}</option>
+#     {% elif c.city == "Москва" -%}
+#     {% else %}
+#          {{c['city']}}
+#     {% endif -%}
+# {% endfor %}
+# </select>"""
+#
+# tm = Template(link)
+# msg = tm.render(cities=cities)
+#
+# print(msg)
+
+# cars = [
+#     {"model": 'Audi', 'price': 23000},
+#     {"model": 'Skoda', 'price': 54000},
+#     {"model": 'Renault', 'price': 34000},
+#     {"model": 'Wolksvagen', 'price': 45000},
+# ]
+
+# tpl = "{{ cs | sum(attribute='price')).price }}"
+# tpl = "{{ ((cs | random).model }}"
+# tpl = "{{ cs | replace('model', 'brand') }}"
+#
+# tm = Template(tpl)
+# msg = tm.render(cs=cars)
+#
+# print(msg)
+
+# person = [
+#     {'name': 'Алексей', 'year': 18, 'weight': 78.5},
+#     {'name': 'Никита', 'year': 23, 'weight': 34.5},
+#     {'name': 'Виталий', 'year': 34, 'weight': 98.5}
+# ]
+
+# tpl = """
+# {% for u in user -%}
+#     {% filter upper %}
+#       {{ u.name }}
+#     {% endfilter %}
+# (% endfor -%}
+# """
+
+# tpl = """
+# {% for u in user -%}
+#     {% filter string %}
+#       {{ u.year }} -  {{ u.weight }}
+#     {% endfilter %}
+# (% endfor -%}
+# """
+#
+# tm = Template(tpl)
+# msg = tm.render(user=person)
+#
+# print(msg)
+
+# html = """
+# {% macro text_input(name,value='', type='text', size='40') %}
+#      <input type="{{ type }}" name="{{ name }}" value="{{ value }}" size={{ size}}>
+# {% endmacro %}
+#
+# <p>{{ text_input('username') }}</p>
+# <p>{{ text_input('email', type='password') }}</p>
+# <p>{{ text_input('password') }}</p>
+# """
+
+# tm = Template(html)
+# msg = tm.render(user=person)
+#
+# print(msg)
+
+
+
+# 15.05.23
+
+# person = [
+#      {'name': 'Алексей', 'year': 18, 'weight': 78.5},
+#      {'name': 'Никита', 'year': 23, 'weight': 34.5},
+#      {'name': 'Виталий', 'year': 34, 'weight': 98.5}
+# ]
+
+# html = """
+# {% macro list_users(list_of_user) -%}
+#      <ul>
+#          {% for u in list_of_user -%}
+#          <li>{{ u.name }}{{caller(u)}}</li>
+#          {%- endfor %}
+#      </ul>
+# {%- endmacro %}
+#
+# {% call(user) list_users(users)%}
+# <ul>
+# <li>age:{{user.year}}</li>
+# <li>weight:{{user.weight}}</li>
+# </ul>
+# {%endcall%}
+#  """
+# html = """
+# {% macro list_users(list_of_user) -%}
+# <ul>
+#      {% for u in list_of_user -%}
+#      <li>{{ u.name }}
+#        <ul>
+#           <li>age:{{u.year}}</li>
+#           <li>weight:{{u.weight}}</li>
+#        </ul>
+#      </li>
+#     {%- endfor %}
+# </ul>
+# {%- endmacro %}
+#
+# {{ list_users(users) }}
+# """
+# tm = Template(html)
+# msg = tm.render(user=person)
+#
+# print(msg)
+#
+# tm = Template(html)
+# msg = tm.render(user=person)
+#
+# print(msg)
+
+
+# from jinja2 import Environment, FileSystemLoader
+#
+# # person = [
+# #      {'name': 'Алексей', 'year': 18, 'weight': 78.5},
+# #      {'name': 'Никита', 'year': 23, 'weight': 34.5},
+# #      {'name': 'Виталий', 'year': 34, 'weight': 98.5}
+# # ]
+#
+# subs = ['Культура', 'Наука', 'Политика', 'Спорт']
+# file_loader = FileSystemLoader('templates')
+# env = Environment(loader=file_loader)
+#
+# tm = env.get_template('company.html')
+# msg = tm.render(list_table=subs)
+#
+# print(msg)
+
+#24.05.23
+#Django
+
+
+print("Hello")

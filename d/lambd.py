@@ -1,7 +1,7 @@
 #1. задание
-#print((lambda r, p: p * (r * 2))(3.14,2))
-#print((lambda a,b: a * b)(10,13))
-#print((lambda z,v,h: ((z + v) * h) / 2)(7,5,3))
+# print((lambda r, p: p * (r * 2))(3.14,2))
+# print((lambda a,b: a * b)(10,13))
+# print((lambda z,v,h: ((z + v) * h) / 2)(7,5,3))
 
 #2. задание
 # print((lambda a,b,c: a * b * c)(2,5,5))
@@ -27,10 +27,13 @@
 # print(list(map(lambda b: b * a.index(b) ** 3, a)))
 
 #6. задание
-student = [
-          {'name': 'Jennifer', 'final': 95},
-          {'name': 'David', 'final': 92},
-          {'name': 'Nikolas', 'final': 98},
-          ]
-res = sorted(map(student, key = lambda item: item(['final']))
-print(res)
+# student = [
+#           {'name': 'Jennifer', 'final': 95},
+#           {'name': 'David', 'final': 92},
+#           {'name': 'Nikolas', 'final': 98},
+#           ]
+#
+# res = max(student,key = lambda item: item['final'])
+# res1 = min(student, key = lambda item: item['final'])
+# print(res)
+# print(res1)

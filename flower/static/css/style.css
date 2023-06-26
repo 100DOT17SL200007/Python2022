@@ -1,0 +1,32 @@
+body{
+     background: pink;
+     margin: 120px;
+     padding: 0px;
+     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.lis{
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    background: purple;
+    padding: 20px;
+    margin-top: 0 auto;
+}
+.content{
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.text{
+    color: black;
+    margin: 0 auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 20px;
+    text-align:justify;
+    text-indent:30px;
+    line-height: 1.5;
+}
+.photo{
+    display: flex;
+}

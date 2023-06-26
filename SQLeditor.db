@@ -1,0 +1,55 @@
+SELECT *
+FROM Customers
+WHERE EXISTS
+   (SELECT *
+   FROM Customers
+   WHERE city='Berlin');
+   
+SELECT *
+FROM Orders o
+WHERE EXISTS
+   (SELECT *
+   FROM Customers c
+   WHERE cname='Cisneros' AND c.cnum=o.cnum);
+   
+SELECT snum AS [Номер], sname AS [Имя]
+FROM Salespeople
+WHERE city='London'
+
+ UNION
+ 
+SELECT cnum, cname
+FROM Customers
+WHERE city='London';
+
+
+SELECT snum AS [Номер], city AS [Город]
+FROM Salespeople
+
+UNION ALL
+ 
+SELECT snum, city
+FROM Customers;
+
+
+SELECT cnum AS [Номер], city AS [Город], rating, "Высокий рейтинг" AS [Рейтинг]
+FROM Customers
+WHERE rating >=200
+
+UNION 
+ 
+SELECT cnum, city, rating, "Низкий рейтинг"
+FROM Customers
+WHERE rating < 200;
+
+
+SELECT s.sname, c.cname
+FROM Salespeople s INNER JOIN Customers c
+ON s.snum = c.snum;
+
+SELECT c.cname, o.onum
+FROM Customers c INNER JOIN Orders o
+ON c.cnum = o.cnum
+ORDER BY c.cname
+
+

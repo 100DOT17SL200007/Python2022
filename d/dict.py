@@ -29,7 +29,7 @@
 # def f(*a):
 #     i = 0
 #     for i in range(len(a)):
-#        print([a[i] + a[(i+1) % len(a)]] , end=" ")
+#      print(a[i] + a[(i+1)% len(a)], end=" ")
 # f(3,9,1)
 # f(2,5,4,2)
 # f(3,5,10,6,3)

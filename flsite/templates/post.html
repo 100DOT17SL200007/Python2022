@@ -1,0 +1,6 @@
+{% extends 'important.html' %}
+
+{% block content %}
+{{ super() }}
+{{ post | safe }}
+{% endblock %}

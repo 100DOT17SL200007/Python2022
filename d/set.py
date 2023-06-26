@@ -3,9 +3,9 @@
 # print(a['emp3']['salary'])
 # a['emp3']['salary'] = '8500'
 # print(a)
-
-
-#studs = {}
+#
+#
+# studs = {}
 # n = int(input("Количество студентов: "))
 # s = 0
 # for i in range(n):
@@ -13,7 +13,7 @@
 #     point = int(input("Балл: "))
 #     studs[sname] = point
 #     s += point
-#
+# #
 # print(studs)
 # avrg = s / n
 # print(avrg)
