@@ -3493,4 +3493,4 @@ from jinja2 import Template
 #Django
 
 
-print("Hello")
+print("Загружено на GitHub")
